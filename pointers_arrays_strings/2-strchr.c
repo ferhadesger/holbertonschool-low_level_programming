@@ -1,17 +1,22 @@
-#include <stddef.h>
+#include "main.h"
+
 /**
- * _strchr - function
- * @s: source
- * @c: special character
- * Return: modified string
+ * _strchr - locates
+ * @s: ptr
+ * @c: char
+ * Return: char
  */
 char *_strchr(char *s, char c)
 {
-	while (*(s) != c && *(s) != '\0')
-		s++;
-	if (*(s) == c)
-		return (s);
-	if (*(s) == '\0')
-		return (NULL);
-	return (NULL);
+	int i;
+
+	for (i = 0; s[i] >= '\0'; i++)
+	{
+		if (s[i] == c)
+			return (s + i);
+	}
+
+	return ('\0');
 }
+
+

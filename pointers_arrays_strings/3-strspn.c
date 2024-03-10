@@ -1,23 +1,32 @@
+#include "main.h"
+
 /**
- * _strspn - find number of accept
- * @accept: accept srting
- * @s: main string
- * Return: number of occurences
+ * _strspn - length of a prefic substring
+ * @s: ptr
+ * @accept: ptr
+ * Return: unsigned int
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	int i = 0, say = 0;
+	unsigned int b = 0;
+	int i;
 
-	while (*(s) != 32)
+	while (*s)
 	{
-		while (*(accept + i) != '\0')
+		for (i = 0; accept[i]; i++)
 		{
-			if (*(s) == *(accept + i))
-				say++;
-			i++;
+			if (*s == accept[i])
+			{
+				b++;
+				break;
+			}
+
+			else if (accept[i + 1] == '\0')
+				return (b);
 		}
-		i = 0;
+
 		s++;
 	}
-	return (say);
+
+	return (b);
 }
