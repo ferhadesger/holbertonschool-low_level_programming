@@ -1,44 +1,32 @@
-#include <string.h>
+#include <stdio.h>
+#include "main.h"
 
 /**
- * power_of_2 - finds power of 2 using given power rate.
+ * binary_to_uint - Converts a binary number to an unsigned int.
+ * @b: A pointer to a string of 0 and 1 chars.
  *
- * @n: power rate.
- *
- * Return: the result of operation.
+ * Return: If b is NULL or contains chars not 0 or 1 - 0.
+ *         Otherwise - the converted number.
  */
-
-unsigned int power_of_2(unsigned int n)
-{
-	unsigned int result = 1;
-
-	while (n > 0)
-		n--, result *= 2;
-	return (result);
-}
-
-/**
- * binary_to_uint - converts binary code to unsigned int type.
- *
- * @b: pointer to first element of string.
- *
- * Return: 10 based value of binary code.
- */
-
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int sum = 0, counter = 0, len;
+	unsigned int num = 0, mult = 1;
+	int len;
 
-	if (!b)
+	if (b == NULL)
 		return (0);
-	len = strlen(b);
-	while (*(b + counter))
+
+	for (len = 0; b[len];)
+		len++;
+
+	for (len -= 1; len >= 0; len--)
 	{
-		counter++;
-		if (*(b + counter - 1) == '1')
-			sum += power_of_2(len - counter);
-		else if (*(b + counter - 1) != '0')
+		if (b[len] != '0' && b[len] != '1')
 			return (0);
+
+		num += (b[len] - '0') * mult;
+		mult *= 2;
 	}
-	return (sum);
+
+	return (num);
 }
